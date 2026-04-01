@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umer Malik | Macro Intelligence Hub</title>
+    <style>
+        :root {
+            --primary-blue: #003366;
+            --secondary-blue: #002244;
+            --accent-green: #2ecc71;
+            --code-bg: #1e1e1e;
+            --text-gray: #e0e0e0;
+            --white: #ffffff;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; color: #333; }
+        
+        header { 
+            background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+            color: var(--white);
+            padding: 3rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-green);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+
+        .name-customizer {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            border-top: 6px solid var(--accent-green);
+        }
+
+        input[type="text"] {
+            padding: 15px;
+            width: 80%;
+            max-width: 400px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus { border-color: var(--primary-blue); box-shadow: 0 0 8px rgba(0,51,102,0.2); }
+
+        .instruction-card {
+            background: #fff8e1;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 8px solid #ffc107;
+            margin-bottom: 40px;
+        }
+
+        .macro-card {
+            background: var(--white);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .macro-card:hover { transform: translateY(-3px); }
+
+        h2, h3 { color: var(--primary-blue); margin-top: 0; }
+        .highlight { color: #d35400; font-weight: bold; }
+
+        .code-block {
+            background: var(--code-bg);
+            color: var(--text-gray);
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .btn-group { display: flex; gap: 12px; }
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .copy-btn { background: var(--primary-blue); color: white; }
+        .dl-btn { background: var(--accent-green); color: white; }
+        button:hover { opacity: 0.85; filter: brightness(1.1); }
+
+        footer {
+            background: var(--secondary-blue);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 60px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Macro Intelligence Hub</h1>
+    <p>Professional Automation Suite & Research Integration</p>
+</header>
+
+<div class="container">
+    
+    <section class="instruction-card">
+        <h3>Deployment Instructions</h3>
+        <p>1. <strong>Open Word:</strong> Press <span class="highlight">Alt + F11</span> to open the VBA Editor.</p>
+        <p>2. <strong>Create Module:</strong> Right-click on 'Normal' > Insert > <strong>Module</strong>.</p>
+        <p>3. <strong>Paste Code:</strong> Copy your personalized macro below and paste it into the window.</p>
+        <p>4. <strong>Save Project:</strong> Press <span class="highlight">Ctrl + S</span> inside the VBA window to save.</p>
+        <p>5. <strong>Save Document:</strong> Save your Word file as a <span class="highlight">Word Macro-Enabled Document (*.docm)</span>.</p>
+    </section>
+
+    <div class="name-customizer">
+        <h3>Step 1: Personalize All Scripts</h3>
+        <p>Enter your full name to automatically update all attribution and branding lines:</p>
+        <input type="text" id="nameInput" placeholder="Enter Full Name..." value="Umer Malik" oninput="renderMacros()">
+    </div>
+
+    <div id="macroContainer"></div>
+
+</div>
+
+<footer id="mainFooter">
+    *** Umer Malik: Where Craft Meets Research ***
+</footer>
+
+<script>
+    const macroData = [
+        {
+            name: "UmerGlobalFormatter",
+            title: "1. Umer Global Formatter",
+            desc: "The 'Intelligent Intake' tool. Scrubs AI artifacts, standardizes typography (Arial 12, 1.15 spacing), and applies Smart-Justify to long paragraphs while protecting Holy Verses.",
+            code: (n) => `Sub UmerGlobalFormatter()
+    ' Researched & Written by ${n}
+    Dim rng As Range, para As Paragraph, paraText As String
+    On Error Resume Next
+    Selection.PasteAndFormat (wdFormatPlainText)
+    Set rng = Selection.Range
+    ' Cleanup Markdown & Artifacts
+    Dim symbols As Variant, i As Integer
+    symbols = Array("#", "\\*", "_", "\`", "|", "=", "—", "–")
+    For i = LBound(symbols) To UBound(symbols)
+        With rng.Find: .Text = symbols(i): .Replacement.Text = "": .MatchWildcards = True: .Execute Replace:=2: End With
+    Next i
+    ' Standard Formatting
+    With Selection
+        .Font.Name = "Arial": .Font.Size = 12: .Font.Bold = False
+        With .ParagraphFormat: .LineSpacing = 13.8: .SpaceAfter = 8: .LeftIndent = 0: End With
+    End With
+    ' Smart Justify
+    For Each para In Selection.Paragraphs
+        paraText = Trim(para.Range.Text)
+        If Len(paraText) > 150 And InStr(paraText, """") = 0 Then para.Alignment = 3 Else para.Alignment = 0
+    Next para
+    ' Italicize Quotes/Verses
+    With rng.Find: .Text = """*""": .MatchWildcards = True: .Replacement.Font.Italic = True: .Execute Replace:=2: End With
+    MsgBox "Intake and Formatting Complete."
+End Sub`
+        },
+        {
+            name: "AssessedBy",
+            title: "2. AssessedBy Branding",
+            desc: "Adds a professional vertical label to the left margin for Assessor/IQA identification.",
+            code: (n) => `Sub AssessedBy${n.replace(/\s+/g, '')}()
+    ' Researched & Written by ${n}
+    Dim shp As Shape
+    Set shp = ActiveDocument.Sections(1).Headers(1).Shapes.AddTextbox(2, 10, 150, 30, 350)
+    With shp
+        .TextFrame.TextRange.Text = "Assessed by ${n}"
+        .TextFrame.Orientation = 3
+        .Line.Visible = 0: .Fill.Visible = 0
+    End With
+End Sub`
+        },
+        {
+            name: "RemovalOfDashesHyphensLines",
+            title: "3. Structural Cleanup",
+            desc: "Removes horizontal dividers and normalizes Em/En dashes to standard hyphens.",
+            code: (n) => `Sub RemovalOfDashesHyphensLines()
+    ' Researched & Written by ${n}
+    With ActiveDocument.Content.Find
+        .ClearFormatting: .Text = "[—–]": .Replacement.Text = "-": .MatchWildcards = True: .Execute Replace:=2
+    End With
+End Sub`
+        },
+        {
+            name: "PageAlignment",
+            title: "4. Page Alignment Standard",
+            desc: "Enforces the global document style: Arial 12 with 1.15 line spacing.",
+            code: (n) => `Sub PageAlignment()
+    ' Researched & Written by ${n}
+    With ActiveDocument.Content
+        .Font.Name = "Arial": .Font.Size = 12
+        .ParagraphFormat.LineSpacing = 13.8
+    End With
+End Sub`
+        },
+        {
+            name: "PageNo",
+            title: "5. Page-No (Vertical)",
+            desc: "Inserts dynamic 'Page X of Y' numbering in the bottom-right margin vertically.",
+            code: (n) => `Sub PageNo()
+    ' Researched & Written by ${n}
+    Dim sec As Section, shp As Shape, ftr As HeaderFooter
+    For Each sec In ActiveDocument.Sections
+        Set ftr = sec.Footers(1)
+        For Each shp In ftr.Shapes: If shp.Name Like "VerticalPageNum*" Then shp.Delete: Next
+        Set shp = ftr.Shapes.AddTextbox(2, 0, 0, 30, 120, ftr.Range)
+        With shp
+            .Name = "VerticalPageNum": .RelativeHorizontalPosition = 1: .Left = -999996
+            .RelativeVerticalPosition = 1: .Top = -999996: .Line.Visible = 0: .Fill.Visible = 0
+            .TextFrame.Orientation = 3
+            .TextFrame.TextRange.Fields.Add .TextFrame.TextRange, 33 ' wdFieldPage
+            .TextFrame.TextRange.InsertAfter " of "
+            .TextFrame.TextRange.Collapse 0
+            .TextFrame.TextRange.Fields.Add .TextFrame.TextRange, 26 ' wdFieldNumPages
+        End With
+    Next sec
+End Sub`
+        },
+        {
+            name: "UnBold",
+            title: "6. Precision UnBold",
+            desc: "Strips bolding from body text while maintaining it for headings and text before colons.",
+            code: (n) => `Sub UnBold()
+    ' Researched & Written by ${n}
+    Dim para As Paragraph, colonPos As Long, rng As Range
+    For Each para In ActiveDocument.Paragraphs
+        If Len(para.Range.Text) > 5 And Not (para.Style Like "Heading*") Then
+            colonPos = InStr(para.Range.Text, ":")
+            If colonPos > 0 Then
+                Set rng = ActiveDocument.Range(para.Range.Start + colonPos, para.Range.End): rng.Font.Bold = False
+            Else: para.Range.Font.Bold = False: End If
+        End If
+    Next para
+End Sub`
+        },
+        {
+            name: "TableFix",
+            title: "7. TableFix",
+            desc: "Standardizes all tables to Arial 10, enables borders, and centers the table rows.",
+            code: (n) => `Sub TableFix()
+    ' Researched & Written by ${n}
+    Dim tbl As Table
+    For Each tbl In ActiveDocument.Tables
+        tbl.Range.Font.Name = "Arial": tbl.Range.Font.Size = 10
+        tbl.Borders.Enable = True: tbl.Rows.Alignment = 1: tbl.AllowAutoFit = True
+    Next tbl
+End Sub`
+        },
+        {
+            name: "SaveToHHF",
+            title: "8. Save To HHF Folder (PDF)",
+            desc: "Exports the current document as a dated PDF directly to the HHF-TRAINING folder.",
+            code: (n) => `Sub SaveToHHF()
+    ' Researched & Written by ${n}
+    Dim folderPath As String, docName As String: folderPath = "C:\\Users\\PC\\Documents\\HHF-TRAINING\\"
+    docName = Left(ActiveDocument.Name, InStrRev(ActiveDocument.Name, ".") - 1)
+    ActiveDocument.ExportAsFixedFormat folderPath & docName & " - " & Format(Date, "dd-mm-yy") & ".pdf", 17
+    MsgBox "PDF Saved to HHF Folder."
+End Sub`
+        },
+        {
+            name: "AIScrubberPro",
+            title: "9. AI Scrubber Pro",
+            desc: "Deep-cleaning tool for AI artifacts like hashtags, backticks, and vertical bars from tables.",
+            code: (n) => `Sub AIScrubberPro()
+    ' Researched & Written by ${n}
+    Dim rng As Range: Set rng = ActiveDocument.Content
+    With rng.Find
+        .ClearFormatting: .Replacement.ClearFormatting: .MatchWildcards = True
+        .Text = "[#\\*_|]": .Replacement.Text = "": .Execute Replace:=2
+    End With
+    MsgBox "AI Artifacts Scrubbed."
+End Sub`
+        },
+        {
+            name: "AttributionBranding",
+            title: "10. Researched & Written By Attribution",
+            desc: "Inserts the final professional attribution stamp at the end of the document.",
+            code: (n) => `Sub ResearchedBy${n.replace(/\s+/g, '')}()
+    ' Researched & Written by ${n}
+    ActiveDocument.Content.InsertAfter vbCrLf & "Researched & Written by ${n}"
+    MsgBox "Attribution Stamp Added."
+End Sub`
+        }
+    ];
+
+    function renderMacros() {
+        const name = document.getElementById('nameInput').value || "Umer Malik";
+        const container = document.getElementById('macroContainer');
+        const footer = document.getElementById('mainFooter');
+        container.innerHTML = '';
+        footer.innerText = `*** ${name}: Where Craft Meets Research ***`;
+
+        macroData.forEach((m, i) => {
+            const finalCode = m.code(name);
+            const card = document.createElement('div');
+            card.className = 'macro-card';
+            card.innerHTML = `
+                <h3>${m.title}</h3>
+                <p>${m.desc}</p>
+                <div class="code-block" id="code-${i}">${finalCode.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</div>
+                <div class="btn-group">
+                    <button class="copy-btn" onclick="copyCode('code-${i}')">Copy Code</button>
+                    <button class="dl-btn" onclick="downloadBas('code-${i}', '${m.name}.bas')">Download .BAS</button>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function copyCode(id) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text).then(() => alert("Code copied to clipboard!"));
+    }
+
+    function downloadBas(id, filename) {
+        const text = document.getElementById(id).innerText;
+        const blob = new Blob([text], { type: 'text/plain' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        a.click();
+    }
+
+    window.onload = renderMacros;
+</script>
+
+</body>
+</html>
