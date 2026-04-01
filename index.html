@@ -12,10 +12,44 @@
             --code-bg: #1e1e1e;
             --text-gray: #e0e0e0;
             --white: #ffffff;
+            --nav-bg: rgba(0, 34, 68, 0.9);
         }
 
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; color: #333; }
         
+        /* New Navigation Style */
+        .top-nav {
+            background: var(--nav-bg);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(46, 204, 113, 0.3);
+        }
+
+        .home-btn {
+            background: transparent;
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .home-btn:hover {
+            background: var(--accent-green);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-green);
+        }
+
         header { 
             background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
             color: var(--white);
@@ -111,6 +145,10 @@
     </style>
 </head>
 <body>
+
+<nav class="top-nav">
+    <a href="https://umeraio.github.io/Tools-Downloads/" class="home-btn">← Back to Home</a>
+</nav>
 
 <header>
     <h1>Macro Intelligence Hub</h1>
@@ -288,7 +326,7 @@ End Sub`
     With rng.Find
         .ClearFormatting: .Replacement.ClearFormatting: .MatchWildcards = True
         .Text = "[#\\*_|]": .Replacement.Text = "": .Execute Replace:=2
-    End With
+    Next i
     MsgBox "AI Artifacts Scrubbed."
 End Sub`
         },
